@@ -1,4 +1,4 @@
-
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -78,8 +78,8 @@ footer{background:#20101d;color:#dfccd9;text-align:center;padding:35px 20px;font
 <div class="overlay" id="orderModal" onclick="if(event.target===this)closeOrder()"><div class="modal">
 <button class="close" onclick="closeOrder()">×</button><h2>Order Request 📦</h2><p class="muted">Your request will be sent to the shop email.</p>
 <div class="notice">Please use a parent/guardian contact method for real orders.</div>
-<div style="background:#fff0f0;border:1px solid #f0b7b7;color:#8a3030;border-radius:13px;padding:12px;font-size:13px;margin:13px 0">
-<strong>📧 Email warning:</strong> Your order request is sent to the shop email. The confirmation email or order message may sometimes go to <strong>Spam/Junk/Promotions</strong>, so please check those folders if you don't see it in your inbox.
+<div style="background:#fff7df;border:1px solid #f0cf75;color:#765300;border-radius:13px;padding:12px;font-size:13px;margin:13px 0">
+<strong>📧 Order email:</strong> Your request will be sent securely through Web3Forms to the email you verify when you create your access key.
 </div>
 <div class="formgrid">
 <div class="field"><label>Your name</label><input id="name" maxlength="80" placeholder="First name"></div>
@@ -96,6 +96,9 @@ footer{background:#20101d;color:#dfccd9;text-align:center;padding:35px 20px;font
 
 <script>
 const SHOP_EMAIL="hess47@gmail.com";
+// Web3Forms access key configured for Jordan's Sweet Shop.
+const WEB3FORMS_ENDPOINT="https://api.web3forms.com/submit";
+const WEB3FORMS_ACCESS_KEY="593edcf4-f36a-418c-9ece-9065b9ad13f5";
 const products=[
 {name:"Rainbow Lollipops",price:2.99,cat:"lollipop",emoji:"🍭",desc:"Bright, fruity and fun.",featured:1},
 {name:"Chocolate Bites",price:4.99,cat:"chocolate",emoji:"🍫",desc:"Chocolatey snack-time favorite.",featured:1},
@@ -131,17 +134,31 @@ function closeOrder(){document.getElementById("orderModal").classList.remove("sh
 async function sendOrder(){
  const name=document.getElementById("name").value.trim(),contact=document.getElementById("contact").value.trim(),method=document.getElementById("method").value,time=document.getElementById("time").value.trim(),notes=document.getElementById("notes").value.trim();
  if(!name||!contact){alert("Please enter your name and a parent/guardian contact method.");return}
+ if(WEB3FORMS_ACCESS_KEY==="YOUR_WEB3FORMS_ACCESS_KEY"){alert("The order form still needs its Web3Forms access key. Create your free Web3Forms access key, then replace YOUR_WEB3FORMS_ACCESS_KEY in this file with it.");return}
  const items=cart.map(x=>x.name+" × "+x.qty).join(", "),total=cart.reduce((s,x)=>s+x.price*x.qty,0);
- const data={name,contact,method,time,notes,items,total:money(total)};
  document.getElementById("sending").textContent="Sending order request…";
  try{
-  const r=await fetch("https://formsubmit.co/ajax/"+encodeURIComponent(SHOP_EMAIL),{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({Name:name,"Parent/Guardian Contact":contact,"Pickup or Delivery":method,"Preferred Time":time||"Not specified","Order":items,"Estimated Total":money(total),Notes:notes||"None",_subject:"New Jordan's Candy Shop Order Request",_template:"table"})});
-  const result=await r.json();
-  if(result.success){cart=[];save();renderCart();closeOrder();document.getElementById("successModal").classList.add("show")}
-  else throw new Error();
+  const body=new URLSearchParams({
+   Name:name,
+   "Parent/Guardian Contact":contact,
+   "Pickup or Delivery":method,
+   "Preferred Time":time||"Not specified",
+   Order:items,
+   "Estimated Total":money(total),
+   Notes:notes||"None",
+   _subject:"New Jordan's Candy Shop Order Request"
+  });
+  body.set("access_key",WEB3FORMS_ACCESS_KEY);
+  body.set("subject","New Jordan's Sweet Shop Order Request");
+  body.set("from_name","Jordan's Sweet Shop Website");
+  const r=await fetch(WEB3FORMS_ENDPOINT,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},body:JSON.stringify(Object.fromEntries(body))});
+  const result=await r.json().catch(()=>({success:r.ok}));
+  if(r.ok && result.success!==false){
+   cart=[];save();renderCart();closeOrder();document.getElementById("sending").textContent="";document.getElementById("successModal").classList.add("show");
+  } else throw new Error();
  }catch(e){
   document.getElementById("sending").textContent="";
-  alert("The order could not be sent yet. The shop email service may need its one-time confirmation. Please try again after it is activated.");
+  alert("The order could not be sent. Check that your Web3Forms access key is correct and that your email has been verified.");
  }
 }
 renderProducts();renderCart();
