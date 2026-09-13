@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Jordan's Candy Shop — fun candy, sweet treats, and snack boxes.">
+<meta name="theme-color" content="#ff4f9a">
+<title>Jordan's Candy Shop | Sweet Treats</title>
+<style>
+:root{--pink:#ff4f9a;--pink2:#ff86ba;--purple:#5b2b55;--cream:#fff8fc;--ink:#291625;--muted:#725a6e;--card:#fff;--line:#f0dce8;--shadow:0 12px 35px #54234414}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:var(--cream);color:var(--ink);line-height:1.5}
+a{text-decoration:none;color:inherit}
+.top{background:var(--purple);color:#fff;text-align:center;padding:9px;font-size:13px;font-weight:700}
+header{position:sticky;top:0;z-index:50;background:#fffdfef2;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{max-width:1180px;margin:auto;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:950;font-size:22px;color:var(--purple);white-space:nowrap}.logo b{color:var(--pink)}
+.links{display:flex;gap:24px;font-weight:750;font-size:14px}.links a:hover{color:var(--pink)}
+.cart-btn,.primary{border:0;background:var(--pink);color:#fff;padding:12px 18px;border-radius:999px;font-weight:900;cursor:pointer;box-shadow:0 7px 18px #ff4f9a33}
+.hero{max-width:1180px;margin:auto;padding:70px 22px 65px;display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center}
+.badge{display:inline-block;background:#ffe1ef;color:#b52267;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:1px}
+h1{font-size:clamp(44px,6vw,72px);line-height:.98;margin:17px 0 20px;letter-spacing:-2px}
+.hero p{font-size:18px;color:var(--muted);max-width:600px;margin-bottom:26px}
+.hero-art{min-height:360px;border-radius:40px;background:linear-gradient(135deg,#ffd8e9,#fff0c7);display:flex;align-items:center;justify-content:center;font-size:125px;box-shadow:var(--shadow);transform:rotate(1deg)}
+.hero-art span{filter:drop-shadow(0 15px 10px #0002)}
+.section{max-width:1180px;margin:auto;padding:58px 22px}.heading{text-align:center;margin-bottom:30px}.heading h2{font-size:36px}.heading p{color:var(--muted);margin-top:5px}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.product{background:#fff;border:1px solid var(--line);border-radius:25px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.product-art{height:180px;display:flex;align-items:center;justify-content:center;font-size:82px;background:#ffe5f0}
+.product:nth-child(2) .product-art{background:#fff0c9}.product:nth-child(3) .product-art{background:#e5f8ff}.product:nth-child(4) .product-art{background:#eee7ff}
+.info{padding:18px;display:flex;flex-direction:column;flex:1}.info h3{font-size:19px}.info p{color:var(--muted);font-size:14px;margin:5px 0 14px}.price{font-size:20px;font-weight:950;color:var(--pink);margin-top:auto}.info button{margin-top:12px;width:100%}
+.features{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.feature-grid{max-width:1180px;margin:auto;padding:32px 22px;display:grid;grid-template-columns:repeat(3,1fr);gap:25px;text-align:center}.feature{padding:12px}.feature strong{display:block;margin:7px 0}.feature span{color:var(--muted);font-size:14px}
+.about{background:var(--purple);color:#fff}.about-inner{max-width:850px;margin:auto;text-align:center;padding:60px 22px}.about h2{font-size:36px}.about p{color:#eadbe6;margin:12px auto 20px}
+.faq{max-width:820px;margin:auto}.faq details{background:#fff;border:1px solid var(--line);border-radius:16px;margin:10px 0;padding:17px 19px}.faq summary{font-weight:850;cursor:pointer}.faq p{color:var(--muted);margin-top:10px}
+footer{background:#21111e;color:#dccbd7;padding:35px 22px;text-align:center;font-size:13px}.footer-logo{font-size:20px;color:#fff;font-weight:900;margin-bottom:8px}
+.modal{display:none;position:fixed;inset:0;background:#160b1490;z-index:100;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.box{background:#fff;width:min(520px,100%);max-height:85vh;overflow:auto;border-radius:25px;padding:24px;box-shadow:0 25px 70px #0004}.box h2{margin-bottom:10px}.items{margin:15px 0;border-top:1px solid var(--line)}.item{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);gap:10px}.total{font-size:21px;font-weight:950;text-align:right;margin:15px 0}.close{float:right;border:0;background:#f6eaf1;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:18px}.notice{background:#fff4d8;border:1px solid #f2d99c;border-radius:14px;padding:12px;font-size:13px;color:#674c1b;margin-top:14px}
+@media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}.hero{grid-template-columns:1fr}.hero-art{min-height:280px}.links{display:none}}
+@media(max-width:520px){.products{grid-template-columns:1fr}.feature-grid{grid-template-columns:1fr}.hero{padding-top:45px}.hero-art{font-size:90px;min-height:220px}h1{letter-spacing:-1px}}
+</style>
+</head>
+<body>
+<div class="top">🍬 Sweet treats • Friendly prices • New treats added regularly</div>
+
+<header>
+<nav class="nav">
+<a class="logo" href="#"><span>🍭</span> Jordan's <b>Candy Shop</b></a>
+<div class="links"><a href="#shop">Shop</a><a href="#why">Why Us</a><a href="#faq">FAQ</a></div>
+<button class="cart-btn" onclick="openCart()">🛒 Cart <span id="count">0</span></button>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<div>
+<span class="badge">Welcome to the shop</span>
+<h1>A little more <span style="color:var(--pink)">sweet</span> in every day.</h1>
+<p>Fun candy, colorful treats, and snack boxes picked to make snack time awesome.</p>
+<a class="primary" href="#shop">Shop best sellers →</a>
+</div>
+<div class="hero-art"><span>🍭🍬🍫</span></div>
+</section>
+
+<section class="section" id="shop">
+<div class="heading"><h2>Best Sellers</h2><p>Choose a treat to add to your cart.</p></div>
+<div class="products">
+<article class="product"><div class="product-art">🍭</div><div class="info"><h3>Rainbow Lollipops</h3><p>Bright, fruity and fun.</p><div class="price">$2.99</div><button class="primary" onclick="add('Rainbow Lollipops',2.99)">Add to cart</button></div></article>
+<article class="product"><div class="product-art">🍫</div><div class="info"><h3>Chocolate Bites</h3><p>Chocolatey snack-time favorite.</p><div class="price">$4.99</div><button class="primary" onclick="add('Chocolate Bites',4.99)">Add to cart</button></div></article>
+<article class="product"><div class="product-art">🍬</div><div class="info"><h3>Gummy Mix</h3><p>A colorful mix of gummy treats.</p><div class="price">$3.99</div><button class="primary" onclick="add('Gummy Mix',3.99)">Add to cart</button></div></article>
+<article class="product"><div class="product-art">🍪</div><div class="info"><h3>Sweet Snack Box</h3><p>A fun mix of sweet snacks.</p><div class="price">$9.99</div><button class="primary" onclick="add('Sweet Snack Box',9.99)">Add to cart</button></div></article>
+</div>
+</section>
+
+<section class="features" id="why"><div class="feature-grid">
+<div class="feature"><div style="font-size:30px">🍬</div><strong>Fun treats</strong><span>Colorful candy picked for snack time.</span></div>
+<div class="feature"><div style="font-size:30px">💖</div><strong>Small-shop service</strong><span>Friendly, personal and easy to order.</span></div>
+<div class="feature"><div style="font-size:30px">📦</div><strong>Simple ordering</strong><span>Choose your favorites and review your cart.</span></div>
+</div></section>
+
+<section class="about"><div class="about-inner"><h2>Made for candy fans 💖</h2><p>Jordan's Candy Shop is a small candy project focused on making treats fun and easy to discover. Thanks for supporting a small shop!</p><a class="primary" href="#shop">Find a treat</a></div></section>
+
+<section class="section" id="faq"><div class="heading"><h2>Questions?</h2><p>Quick answers before you order.</p></div>
+<div class="faq">
+<details><summary>How do I order?</summary><p>Add the treats you want to your cart. Before taking real orders or payments, a parent or guardian should help with checkout, payment, delivery, and customer information.</p></details>
+<details><summary>Do you offer delivery?</summary><p>Delivery or pickup options should be arranged with a parent or guardian and clearly listed here once your shop is ready to take orders.</p></details>
+<details><summary>Can I request a candy box?</summary><p>Yes! A custom box can be added as a future option once the shop has a confirmed menu and prices.</p></details>
+</div></section>
+</main>
+
+<footer><div class="footer-logo">🍭 Jordan's Candy Shop</div><div>Sweet treats • Thanks for visiting!</div><div style="margin-top:14px">© 2026 Jordan's Candy Shop</div></footer>
+
+
+<div class="modal" id="orderFormModal" onclick="if(event.target===this)closeOrderForm()">
+<div class="box">
+<button class="close" onclick="closeOrderForm()">×</button>
+<h2>Request Your Order 🍬</h2>
+<p style="color:var(--muted);margin-bottom:15px">This sends an order request to the shop. No card information is collected here.</p>
+<div class="notice" style="margin:0 0 16px">Your parent/guardian can review the request, confirm the order, and arrange payment and pickup/delivery.</div>
+<p><strong>Items:</strong> <span id="orderItems"></span></p>
+<p><strong>Estimated total:</strong> <span id="orderTotal"></span></p>
+<label style="display:block;margin-top:16px;font-weight:800">Your name
+<input id="customerName" type="text" maxlength="80" placeholder="First name" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:12px;font-size:16px">
+</label>
+<label style="display:block;margin-top:12px;font-weight:800">Parent/guardian contact
+<input id="customerContact" type="text" maxlength="120" placeholder="Parent/guardian email or phone" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:12px;font-size:16px">
+</label>
+<label style="display:block;margin-top:12px;font-weight:800">Pickup or delivery
+<select id="deliveryMethod" style="width:100%;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:12px;font-size:16px">
+<option>Pickup</option><option>Delivery (if available)</option>
+</select>
+</label>
+<label style="display:block;margin-top:12px;font-weight:800">Notes (optional)
+<textarea id="orderNotes" maxlength="500" placeholder="Anything the shop should know?" style="width:100%;height:90px;padding:12px;margin-top:6px;border:1px solid var(--line);border-radius:12px;font-size:16px;resize:vertical"></textarea>
+</label>
+<button class="primary" style="width:100%;margin-top:16px" onclick="makeOrderEmail()">Send Order Request →</button>
+<p style="font-size:12px;color:var(--muted);margin-top:10px">Only send information needed to arrange the order. A parent/guardian should manage the shop inbox.</p>
+</div></div>
+
+<div class="modal" id="cartModal" onclick="if(event.target===this)closeCart()">
+<div class="box"><button class="close" onclick="closeCart()">×</button><h2>Your Cart 🛒</h2><p style="color:var(--muted)">Review your treats below.</p><div class="items" id="items"></div><div class="total" id="total">$0.00</div><button class="primary" style="width:100%" onclick="showOrderForm()">Request this order</button><div class="notice">For real sales, have a parent/guardian handle payment, customer information, delivery, and any required business rules.</div></div>
+</div>
+
+<script>
+let cart=[];
+function add(name,price){let x=cart.find(i=>i.name===name);if(x)x.qty++;else cart.push({name,price,qty:1});render();openCart();}
+function render(){
+ document.getElementById('count').textContent=cart.reduce((s,x)=>s+x.qty,0);
+ let box=document.getElementById('items');
+ if(!cart.length){box.innerHTML='<p style="padding:18px 0;color:#725a6e">Your cart is empty. 🍬</p>';}
+ else box.innerHTML=cart.map((x,i)=>`<div class="item"><span>${x.name} × ${x.qty}</span><strong>$${(x.price*x.qty).toFixed(2)}</strong><button onclick="removeItem(${i})" style="border:0;background:none;cursor:pointer">✕</button></div>`).join('');
+ document.getElementById('total').textContent='$'+cart.reduce((s,x)=>s+x.price*x.qty,0).toFixed(2);
+}
+function removeItem(i){cart.splice(i,1);render();}
+function openCart(){document.getElementById('cartModal').classList.add('open');render();}
+function closeCart(){document.getElementById('cartModal').classList.remove('open');}
+function checkoutInfo(){showOrderForm();}
+function showOrderForm(){
+  if(!cart.length){alert('Add some candy to your cart first! 🍭');return;}
+  document.getElementById('orderItems').textContent=cart.map(x=>x.name+' × '+x.qty).join(', ');
+  document.getElementById('orderTotal').textContent='$'+cart.reduce((s,x)=>s+x.price*x.qty,0).toFixed(2);
+  document.getElementById('orderFormModal').classList.add('open');
+}
+function closeOrderForm(){document.getElementById('orderFormModal').classList.remove('open');}
+function makeOrderEmail(){
+  const name=document.getElementById('customerName').value.trim();
+  const contact=document.getElementById('customerContact').value.trim();
+  const method=document.getElementById('deliveryMethod').value;
+  const notes=document.getElementById('orderNotes').value.trim();
+  if(!name||!contact){alert('Please enter your name and a way for the shop to contact you.');return;}
+  const subject=encodeURIComponent("New Jordan's Candy Shop order request");
+  const body=encodeURIComponent(
+    "NEW ORDER REQUEST\\n\\n"+
+    "Customer: "+name+"\\n"+
+    "Contact: "+contact+"\\n"+
+    "Pickup/Delivery: "+method+"\\n"+
+    "Items: "+cart.map(x=>x.name+" × "+x.qty).join(", ")+"\\n"+
+    "Estimated total: $"+cart.reduce((s,x)=>s+x.price*x.qty,0).toFixed(2)+"\\n"+
+    "Notes: "+(notes||"None")+"\\n\\n"+
+    "Please confirm availability, final price, payment method, and pickup/delivery details."
+  );
+  /* Replace this address with the parent/guardian's shop email before launch. */
+  window.location.href="mailto:REPLACE_WITH_PARENT_EMAIL@example.com?subject="+subject+"&body="+body;
+}
+
+</script>
+</body>
+</html>
