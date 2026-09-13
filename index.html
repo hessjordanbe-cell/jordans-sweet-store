@@ -1,4 +1,4 @@
-<!doctype html>
+
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -78,6 +78,9 @@ footer{background:#20101d;color:#dfccd9;text-align:center;padding:35px 20px;font
 <div class="overlay" id="orderModal" onclick="if(event.target===this)closeOrder()"><div class="modal">
 <button class="close" onclick="closeOrder()">×</button><h2>Order Request 📦</h2><p class="muted">Your request will be sent to the shop email.</p>
 <div class="notice">Please use a parent/guardian contact method for real orders.</div>
+<div style="background:#fff0f0;border:1px solid #f0b7b7;color:#8a3030;border-radius:13px;padding:12px;font-size:13px;margin:13px 0">
+<strong>📧 Email warning:</strong> Your order request is sent to the shop email. The confirmation email or order message may sometimes go to <strong>Spam/Junk/Promotions</strong>, so please check those folders if you don't see it in your inbox.
+</div>
 <div class="formgrid">
 <div class="field"><label>Your name</label><input id="name" maxlength="80" placeholder="First name"></div>
 <div class="field"><label>Parent/guardian contact</label><input id="contact" maxlength="120" placeholder="Email or phone"></div>
