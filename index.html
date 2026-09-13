@@ -80,6 +80,19 @@ footer{background:#21111e;color:#dccbd7;padding:35px 22px;text-align:center;font
 
 <section class="about"><div class="about-inner"><h2>Made for candy fans 💖</h2><p>Jordan's Candy Shop is a small candy project focused on making treats fun and easy to discover. Thanks for supporting a small shop!</p><a class="primary" href="#shop">Find a treat</a></div></section>
 
+
+<section class="section" id="shop-settings">
+<div class="heading"><h2>Shop Order Email 📧</h2><p>Set the email address where order requests should be sent.</p></div>
+<div style="max-width:650px;margin:auto;background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)">
+<label style="display:block;font-weight:850">Your shop email
+<input id="shopEmail" type="email" placeholder="yourshop@email.com" style="width:100%;padding:13px;margin-top:7px;border:1px solid var(--line);border-radius:12px;font-size:16px">
+</label>
+<button class="primary" style="margin-top:12px" onclick="saveShopEmail()">Save shop email</button>
+<span id="emailSaved" style="margin-left:10px;color:#3d8b5c;font-weight:800"></span>
+<p style="font-size:12px;color:var(--muted);margin-top:10px">This email is saved only in this browser. Customers' order requests will open their email app addressed to the shop email you save.</p>
+</div>
+</section>
+
 <section class="section" id="faq"><div class="heading"><h2>Questions?</h2><p>Quick answers before you order.</p></div>
 <div class="faq">
 <details><summary>How do I order?</summary><p>Add the treats you want to your cart. Before taking real orders or payments, a parent or guardian should help with checkout, payment, delivery, and customer information.</p></details>
@@ -160,8 +173,22 @@ function makeOrderEmail(){
     "Please confirm availability, final price, payment method, and pickup/delivery details."
   );
   /* Replace this address with the parent/guardian's shop email before launch. */
-  window.location.href="mailto:REPLACE_WITH_PARENT_EMAIL@example.com?subject="+subject+"&body="+body;
+  const shopEmail=localStorage.getItem("jcs_shop_email");
+  if(!shopEmail){alert("Please save your shop email first in the Shop Order Email section.");document.getElementById("shop-settings").scrollIntoView({behavior:"smooth"});return;}
+  window.location.href="mailto:"+encodeURIComponent(shopEmail)+"?subject="+subject+"&body="+body;
 }
+
+
+function saveShopEmail(){
+  const email=document.getElementById('shopEmail').value.trim();
+  if(!email || !email.includes('@')){alert('Please enter a valid shop email.');return;}
+  localStorage.setItem('jcs_shop_email',email);
+  document.getElementById('emailSaved').textContent='Saved ✓';
+}
+(function(){
+  const saved=localStorage.getItem('jcs_shop_email');
+  if(saved) document.getElementById('shopEmail').value=saved;
+})();
 
 </script>
 </body>
