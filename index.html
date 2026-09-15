@@ -1,353 +1,114 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Jordan's Sweet Shop — candy, gummies, chocolates, snack boxes, and mystery treats.">
-<meta name="theme-color" content="#ff4f9a">
-<title>Jordan's Sweet Shop 🍬</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jordan's Sweet Shop 🍭</title>
 <style>
-:root{
-  --pink:#ff4f9a;--pink-dark:#d92f79;--purple:#54254e;--purple2:#7b3f72;
-  --cream:#fff8fc;--ink:#281522;--muted:#765d70;--line:#efdbe7;
-  --card:#fff;--gold:#ffbd45;--green:#31966a;--shadow:0 16px 45px rgba(84,37,78,.12);
-}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:var(--cream);color:var(--ink)}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-a{text-decoration:none;color:inherit}
-img{max-width:100%}
-.topbar{background:var(--purple);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:800}
-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav{max-width:1240px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:18px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:1000;font-size:21px;white-space:nowrap}
-.brand-bubble{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,#ff4f9a,#ffbd45);box-shadow:0 8px 20px rgba(255,79,154,.25);font-size:23px}
-.navlinks{display:flex;gap:6px;margin-left:auto}
-.navlinks a{padding:9px 11px;border-radius:10px;font-weight:800;font-size:14px}
-.navlinks a:hover{background:#fff0f7}
-.cartbtn{border:0;background:var(--purple);color:#fff;padding:11px 15px;border-radius:13px;font-weight:900;box-shadow:0 8px 20px rgba(84,37,78,.2)}
-.cart-count{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 5px;border-radius:99px;background:var(--gold);color:var(--ink);margin-left:6px;font-size:12px}
-.hero{max-width:1240px;margin:auto;padding:64px 20px 42px;display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center}
-.eyebrow{display:inline-flex;align-items:center;gap:7px;background:#ffe8f3;color:var(--pink-dark);padding:8px 12px;border-radius:999px;font-weight:900;font-size:13px}
-.hero h1{font-size:clamp(42px,6vw,72px);line-height:.96;margin:16px 0 18px;letter-spacing:-3px}
-.gradient{background:linear-gradient(90deg,var(--pink),#8b4dff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{font-size:18px;line-height:1.65;color:var(--muted);max-width:650px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.primary,.secondary{border:0;border-radius:14px;padding:13px 18px;font-weight:950}
-.primary{background:var(--pink);color:#fff;box-shadow:0 12px 24px rgba(255,79,154,.22)}
-.primary:hover{background:var(--pink-dark);transform:translateY(-1px)}
-.secondary{background:#fff;border:1px solid var(--line);color:var(--purple)}
-.hero-art{min-height:360px;border-radius:32px;background:radial-gradient(circle at 30% 25%,#fff 0 7%,transparent 8%),linear-gradient(135deg,#ffd9eb,#eee0ff);position:relative;overflow:hidden;box-shadow:var(--shadow)}
-.candy{position:absolute;font-size:58px;filter:drop-shadow(0 12px 10px rgba(84,37,78,.14));animation:float 4s ease-in-out infinite}
-.c1{left:14%;top:17%;animation-delay:.1s}.c2{right:15%;top:14%;animation-delay:.7s}.c3{left:30%;bottom:17%;animation-delay:1.1s}.c4{right:28%;bottom:21%;animation-delay:1.6s}.c5{left:49%;top:36%;font-size:82px;animation-delay:.4s}
-@keyframes float{50%{transform:translateY(-13px) rotate(5deg)}}
-.trust{max-width:1240px;margin:0 auto 35px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.trust-card{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px;display:flex;gap:12px;align-items:center}
-.trust-icon{font-size:25px}.trust-card strong{display:block}.trust-card span{color:var(--muted);font-size:13px}
-.section{max-width:1240px;margin:auto;padding:45px 20px}
-.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px}
-.section h2{font-size:34px;margin:0;letter-spacing:-1px}
-.section-head p{margin:7px 0 0;color:var(--muted)}
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.search{flex:1;min-width:220px;position:relative}
-.search input,.controls select{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 14px;outline:none}
-.search input:focus,.controls select:focus,input:focus,textarea:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(255,79,154,.1)}
-.category{border:1px solid var(--line);background:#fff;padding:10px 13px;border-radius:12px;font-weight:850;color:var(--purple)}
-.category.active,.category:hover{background:#ffe8f3;border-color:#ffc0da}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
-.product{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 24px rgba(84,37,78,.06);transition:.18s}
-.product:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.product-top{height:170px;background:linear-gradient(135deg,#fff0f7,#f3eaff);display:grid;place-items:center;position:relative}
-.product-emoji{font-size:75px;filter:drop-shadow(0 12px 10px rgba(84,37,78,.13))}
-.badge{position:absolute;top:12px;left:12px;background:var(--purple);color:#fff;padding:6px 9px;border-radius:999px;font-size:11px;font-weight:950}
-.product-body{padding:16px;display:flex;flex-direction:column;flex:1}
-.product h3{margin:0 0 6px;font-size:18px}
-.product p{color:var(--muted);font-size:13px;line-height:1.45;margin:0 0 12px}
-.product-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.price{font-size:19px;font-weight:1000;color:var(--purple)}
-.add{border:0;background:var(--pink);color:#fff;border-radius:11px;padding:9px 12px;font-weight:950}
-.add:hover{background:var(--pink-dark)}
-.empty{grid-column:1/-1;text-align:center;padding:40px;background:#fff;border:1px dashed var(--line);border-radius:18px;color:var(--muted)}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.info{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
-.info .big{font-size:32px}.info h3{margin:12px 0 7px}.info p{color:var(--muted);line-height:1.6;margin:0}
-.banner{background:linear-gradient(135deg,var(--purple),#8a467c);color:#fff;border-radius:28px;padding:34px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.banner p{color:#f6ddeb;line-height:1.6;margin:7px 0 0}
-.banner .secondary{background:#fff;color:var(--purple)}
-.faq{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-details{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px 18px}
-summary{font-weight:900;cursor:pointer}.answer{color:var(--muted);line-height:1.55;padding-top:10px}
-footer{margin-top:35px;background:#281522;color:#fff}
-.footer{max-width:1240px;margin:auto;padding:36px 20px;display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
-.footer p{color:#dbc7d5;max-width:500px;line-height:1.55}
-.footer small{color:#bca5b5}
-.overlay{position:fixed;inset:0;background:rgba(40,21,34,.52);z-index:100;display:none;padding:20px;overflow:auto}
-.overlay.show{display:flex;align-items:center;justify-content:center}
-.modal{width:min(720px,100%);background:#fff;border-radius:24px;box-shadow:0 25px 80px rgba(0,0,0,.25);overflow:hidden}
-.modal-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
-.modal-head h2{margin:0}.close{border:0;background:#f8edf4;width:38px;height:38px;border-radius:11px;font-size:20px}
-.modal-body{padding:20px 22px}
-.cart-row{display:grid;grid-template-columns:1fr auto auto auto;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #f1e5ec}
-.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:#fff;width:30px;height:30px;border-radius:8px}
-.remove{border:0;background:none;color:#b22d68;font-weight:800}
-.total{display:flex;justify-content:space-between;font-size:20px;font-weight:1000;padding:18px 0}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.field{display:flex;flex-direction:column;gap:6px;margin-bottom:13px}
-.field.full{grid-column:1/-1}
-label{font-weight:850;font-size:13px}
-input,select,textarea{border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#fff;outline:none}
-textarea{min-height:90px;resize:vertical}
-.note{font-size:12px;color:var(--muted);background:#fff8fc;border:1px solid var(--line);padding:11px;border-radius:10px;line-height:1.45}
-.status{margin-top:12px;padding:11px;border-radius:10px;display:none}
-.status.ok{display:block;background:#eaf8f1;color:#1e704d}.status.bad{display:block;background:#fff0f0;color:#9b3030}
-.success{display:none;text-align:center;padding:25px}.success.show{display:block}.success-icon{font-size:55px}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}.hero{grid-template-columns:1fr}.hero-art{min-height:300px}.navlinks{display:none}}
-@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr)}.trust,.info-grid,.faq{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.banner{display:block}.banner .secondary{margin-top:15px}.hero{padding-top:42px}.hero h1{letter-spacing:-2px}.product-top{height:145px}}
-@media(max-width:480px){.grid{grid-template-columns:1fr}.brand{font-size:17px}.brand-bubble{width:36px;height:36px}.cartbtn{margin-left:auto}.nav{padding:11px 12px}.section{padding:35px 14px}.hero{padding-left:14px;padding-right:14px}.hero-art{min-height:250px}}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff7fb;color:#35132f}
+header{height:76px;background:white;border-bottom:1px solid #f0dce9;display:flex;align-items:center;justify-content:space-between;padding:0 8%;position:sticky;top:0;z-index:5}
+.logo{display:flex;align-items:center;gap:12px;font-size:22px;font-weight:800}
+.logo-icon{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#ff9a62,#ff4f9a);display:grid;place-items:center;font-size:23px}
+nav{display:flex;align-items:center;gap:28px;font-weight:700;font-size:14px}
+nav a{color:#35132f;text-decoration:none}
+.cart{background:#572052;color:white;padding:12px 18px;border-radius:14px}
+.cart span{background:#ffb02e;color:#35132f;border-radius:50%;padding:3px 7px;margin-left:6px}
+main{max-width:1050px;margin:0 auto;padding:18px 0 60px}
+.sort{width:100%;padding:12px;border:1px solid #f1d4e3;border-radius:12px;background:white;font-size:14px}
+.categories{display:flex;gap:10px;margin:16px 0;flex-wrap:wrap}
+.cat{padding:10px 15px;border:1px solid #f1d4e3;border-radius:13px;background:white;font-weight:800;color:#572052;cursor:pointer}
+.cat.active{background:#ffe6f1;border-color:#ffb6d3}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:white;border:1px solid #f0dce9;border-radius:18px;overflow:hidden;box-shadow:0 4px 15px #5b245f10}
+.pic{height:145px;background:linear-gradient(135deg,#fff0f8,#f5eaff);display:grid;place-items:center;font-size:68px}
+.info{padding:14px}
+.badge{display:inline-block;background:#572052;color:white;padding:6px 9px;border-radius:10px;font-size:10px;font-weight:800;margin-bottom:8px}
+h2{font-size:16px;margin:4px 0 8px}
+.desc{font-size:13px;line-height:1.4;color:#77566f;min-height:38px}
+.bottom{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.price{font-size:18px;font-weight:900}
+button{border:0;background:#ff4f91;color:white;font-weight:800;padding:10px 13px;border-radius:11px;cursor:pointer}
+button:hover{filter:brightness(.95)}
+footer{text-align:center;padding:30px;color:#806579;font-size:13px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}header{padding:0 4%}main{padding:18px 4%}}
+@media(max-width:500px){.grid{grid-template-columns:1fr}nav a:not(.cart){display:none}}
 </style>
 </head>
 <body>
-<div class="topbar">🍬 Fresh treats • Easy ordering • Parent/guardian-managed pickup & delivery</div>
-
 <header>
-  <nav class="nav">
-    <a class="brand" href="#top"><span class="brand-bubble">🍭</span>Jordan's Sweet Shop</a>
-    <div class="navlinks">
-      <a href="#shop">Shop</a><a href="#why">Why us</a><a href="#faq">FAQ</a>
-    </div>
-    <button class="cartbtn" onclick="openCart()">🛒 Cart <span id="cartCount" class="cart-count">0</span></button>
-  </nav>
+  <div class="logo"><div class="logo-icon">🍭</div>Jordan's Sweet Shop</div>
+  <nav><a href="#shop">Shop</a><a href="#why">Why us</a><a href="#faq">FAQ</a><a href="#cart" class="cart">🛒 Cart <span id="count">0</span></a></nav>
 </header>
 
-<main id="top">
-<section class="hero">
-  <div>
-    <span class="eyebrow">✨ Sweet stuff, simple ordering</span>
-    <h1>Your next favorite <span class="gradient">candy</span> is here.</h1>
-    <p>Pick your treats, build your cart, and send an order request in under a minute. We'll review it and contact you to confirm the final total and pickup or delivery details.</p>
-    <div class="actions">
-      <a class="primary" href="#shop">🍬 Shop candy</a>
-      <button class="secondary" onclick="openCart()">View cart →</button>
-    </div>
-  </div>
-  <div class="hero-art" aria-label="Candy illustration">
-    <div class="candy c1">🍭</div><div class="candy c2">🍫</div><div class="candy c3">🍬</div>
-    <div class="candy c4">🧸</div><div class="candy c5">🍩</div>
-  </div>
-</section>
+<main id="shop">
+<select class="sort" id="sort">
+  <option>Sort: Featured</option>
+  <option>Price: Low to High</option>
+  <option>Price: High to Low</option>
+  <option>Name: A to Z</option>
+</select>
 
-<div class="trust">
-  <div class="trust-card"><div class="trust-icon">🛒</div><div><strong>Build your cart</strong><span>Choose as many treats as you want.</span></div></div>
-  <div class="trust-card"><div class="trust-icon">📧</div><div><strong>Easy order request</strong><span>We receive your request by email.</span></div></div>
-  <div class="trust-card"><div class="trust-icon">👨‍👩‍👧</div><div><strong>Order confirmation</strong><span>A parent/guardian handles final details.</span></div></div>
+<div class="categories">
+  <button class="cat active" data-cat="All">All</button>
+  <button class="cat" data-cat="Lollipops">Lollipops</button>
+  <button class="cat" data-cat="Chocolate">Chocolate</button>
+  <button class="cat" data-cat="Gummies">Gummies</button>
+  <button class="cat" data-cat="Sour">Sour</button>
 </div>
 
-<section class="section" id="shop">
-  <div class="section-head">
-    <div><h2>Shop the sweets 🍬</h2><p>Pick a category or search for a treat.</p></div>
-  </div>
-  <div class="controls">
-    <div class="search"><input id="search" type="search" placeholder="Search candy..." oninput="renderProducts()"></div>
-    <select id="sort" onchange="renderProducts()" aria-label="Sort products">
-      <option value="featured">Sort: Featured</option><option value="low">Price: Low to high</option>
-      <option value="high">Price: High to low</option><option value="az">Name: A–Z</option>
-    </select>
-  </div>
-  <div class="controls" id="categories"></div>
-  <div class="grid" id="products"></div>
-</section>
-
-<section class="section" id="why">
-  <div class="section-head"><div><h2>Why shop here?</h2><p>Built to make ordering candy easy and clear.</p></div></div>
-  <div class="info-grid">
-    <article class="info"><div class="big">🍭</div><h3>Fun selection</h3><p>Gummies, chocolate, sour candy, snack boxes, and mystery treats all in one place.</p></article>
-    <article class="info"><div class="big">📦</div><h3>Simple ordering</h3><p>Add items to your cart and send the whole order at once instead of writing everything out.</p></article>
-    <article class="info"><div class="big">💬</div><h3>Human confirmation</h3><p>Your order is a request first. The final price, availability, and pickup or delivery details are confirmed before anything is finalized.</p></article>
-  </div>
-</section>
-
-<section class="section">
-  <div class="banner">
-    <div><h2 style="margin:0">Ready for a sweet snack?</h2><p>Build your cart now and send an order request.</p></div>
-    <button class="secondary" onclick="openCart()">🛒 Open my cart</button>
-  </div>
-</section>
-
-<section class="section" id="faq">
-  <div class="section-head"><div><h2>FAQ</h2><p>Quick answers before you order.</p></div></div>
-  <div class="faq">
-    <details><summary>How do I place an order?</summary><div class="answer">Add candy to your cart, click checkout, enter your contact information, and send the order request.</div></details>
-    <details><summary>Do I pay on this website?</summary><div class="answer">No. This site sends an order request. A parent/guardian confirms the final price and handles payment and fulfillment.</div></details>
-    <details><summary>Can I request pickup or delivery?</summary><div class="answer">Yes. Choose your preferred option during checkout. Availability and details will be confirmed after the request is received.</div></details>
-    <details><summary>Can I change an order?</summary><div class="answer">Send your change as soon as possible. Orders are not considered final until they are confirmed.</div></details>
-  </div>
-</section>
+<div class="grid" id="products"></div>
 </main>
 
-<footer>
-  <div class="footer">
-    <div><strong>🍬 Jordan's Sweet Shop</strong><p>Sweet treats with a simple, request-first ordering system.</p></div>
-    <div><strong>Order email</strong><p>hessjordan47@gmail.com</p><small>© 2026 Jordan's Sweet Shop</small></div>
-  </div>
-</footer>
+<section id="why" style="max-width:1050px;margin:auto;padding:20px 4%;text-align:center">
+<h2>Why shop with Jordan's?</h2>
+<p>Fun candy, simple prices, and carefully packed orders.</p>
+</section>
 
-<div class="overlay" id="cartOverlay" onclick="overlayClose(event)">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
-    <div class="modal-head"><h2 id="cartTitle">Your cart 🛒</h2><button class="close" onclick="closeCart()">×</button></div>
-    <div class="modal-body" id="cartBody"></div>
-  </div>
-</div>
+<section id="faq" style="max-width:1050px;margin:auto;padding:20px 4%;text-align:center">
+<h2>FAQ</h2>
+<p>More shipping and ordering information will be added before the shop officially launches.</p>
+</section>
+
+<footer>Jordan's Sweet Shop 🍬</footer>
 
 <script>
-const SHOP_EMAIL="hessjordan47@gmail.com";
-const WEB3FORMS_ENDPOINT="https://api.web3forms.com/submit";
-const WEB3FORMS_ACCESS_KEY="593edcf4-f36a-418c-9ece-9065b9ad13f5";
-
 const products=[
- {id:"rainbow-lollipops",name:"Rainbow Lollipops",price:2.99,cat:"Lollipops",emoji:"🍭",badge:"Popular",desc:"Bright, colorful lollipops for a classic sweet treat."},
- {id:"chocolate-bites",name:"Chocolate Bites",price:4.99,cat:"Chocolate",emoji:"🍫",badge:"",desc:"Little chocolate treats made for snack time."},
- {id:"gummy-mix",name:"Gummy Mix",price:3.99,cat:"Gummies",emoji:"🍬",badge:"Best seller",desc:"A colorful mix of chewy gummy favorites."},
- {id:"sweet-snack-box",name:"Sweet Snack Box",price:9.99,cat:"Boxes",emoji:"🎁",badge:"Value",desc:"A variety-packed box when you want a little of everything."},
- {id:"sour-candy-mix",name:"Sour Candy Mix",price:4.49,cat:"Sour",emoji:"🍋",badge:"Sour",desc:"Tangy, sour, and seriously snackable."},
- {id:"caramel-treats",name:"Caramel Treats",price:5.49,cat:"Chocolate",emoji:"🍮",badge:"",desc:"Rich caramel-style treats for a sweet break."},
- {id:"gummy-bears",name:"Gummy Bears",price:3.49,cat:"Gummies",emoji:"🧸",badge:"",desc:"Classic chewy gummy bears in a fun mix."},
- {id:"mystery-box",name:"Mystery Candy Box",price:12.99,cat:"Boxes",emoji:"❓",badge:"Mystery",desc:"A surprise selection of sweet treats."}
+ {name:"Assorted Rainbow Swirl Lollipops",price:2.99,cat:"Lollipops",emoji:"🍭",badge:"Popular",desc:"Bright, colorful swirl lollipops in assorted flavors."},
+ {name:"Tootsie Roll Midgees",price:4.99,cat:"Chocolate",emoji:"🍫",badge:"",desc:"Classic chewy chocolate-flavored Tootsie Roll candies."},
+ {name:"Assorted Gummy Candy Mix",price:3.99,cat:"Gummies",emoji:"🍬",badge:"Best seller",desc:"A mix of chewy gummy favorites in different shapes and flavors."},
+ {name:"Sour Punch Assorted Twists",price:4.49,cat:"Sour",emoji:"🍋",badge:"Sour",desc:"Chewy, fruity sour twists in assorted flavors."},
+ {name:"Werther's Original Hard Caramels",price:5.49,cat:"Caramel",emoji:"🍮",badge:"",desc:"Classic creamy caramel hard candies."},
+ {name:"HARIBO Goldbears Gummy Bears",price:3.49,cat:"Gummies",emoji:"🧸",badge:"",desc:"Classic chewy gummy bears in assorted fruit flavors."},
 ];
 
-let cart=JSON.parse(localStorage.getItem("jss_cart")||"{}");
-let activeCat="All";
+let cart=0, current="All";
+const grid=document.getElementById("products"), count=document.getElementById("count");
 
-function money(n){return "$"+n.toFixed(2)}
-function save(){localStorage.setItem("jss_cart",JSON.stringify(cart));updateCount()}
-function updateCount(){document.getElementById("cartCount").textContent=Object.values(cart).reduce((a,b)=>a+b,0)}
-function categories(){
- const cats=["All",...new Set(products.map(p=>p.cat))];
- document.getElementById("categories").innerHTML=cats.map(c=>`<button class="category ${c===activeCat?"active":""}" onclick="setCat('${c.replace(/'/g,"\\'")}')">${c}</button>`).join("");
-}
-function setCat(c){activeCat=c;categories();renderProducts()}
-function renderProducts(){
- let q=(document.getElementById("search").value||"").toLowerCase().trim();
- let list=products.filter(p=>(activeCat==="All"||p.cat===activeCat)&&(!q||(p.name+" "+p.cat+" "+p.desc).toLowerCase().includes(q)));
+function render(){
+ let list=products.filter(p=>current==="All"||p.cat===current);
  const sort=document.getElementById("sort").value;
- if(sort==="low")list.sort((a,b)=>a.price-b.price);
- if(sort==="high")list.sort((a,b)=>b.price-a.price);
- if(sort==="az")list.sort((a,b)=>a.name.localeCompare(b.name));
- const el=document.getElementById("products");
- if(!list.length){el.innerHTML='<div class="empty">No candy matched that search. Try another treat! 🍬</div>';return}
- el.innerHTML=list.map(p=>`<article class="product">
-   <div class="product-top">${p.badge?`<span class="badge">${p.badge}</span>`:""}<div class="product-emoji">${p.emoji}</div></div>
-   <div class="product-body"><h3>${p.name}</h3><p>${p.desc}</p>
-   <div class="product-foot"><span class="price">${money(p.price)}</span><button class="add" onclick="add('${p.id}')">Add to cart</button></div></div>
+ if(sort==="Price: Low to High") list.sort((a,b)=>a.price-b.price);
+ if(sort==="Price: High to Low") list.sort((a,b)=>b.price-a.price);
+ if(sort==="Name: A to Z") list.sort((a,b)=>a.name.localeCompare(b.name));
+ grid.innerHTML=list.map((p,i)=>`
+ <article class="card">
+   <div class="pic">${p.emoji}</div>
+   <div class="info">
+    ${p.badge?`<div class="badge">${p.badge}</div>`:""}
+    <h2>${p.name}</h2>
+    <div class="desc">${p.desc}</div>
+    <div class="bottom"><div class="price">$${p.price.toFixed(2)}</div><button onclick="add()">Add to cart</button></div>
+   </div>
  </article>`).join("");
 }
-function add(id){cart[id]=(cart[id]||0)+1;save();toast("Added to cart! 🍬")}
-function change(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];save();renderCart()}
-function toast(msg){
- const t=document.createElement("div");t.textContent=msg;
- t.style.cssText="position:fixed;right:18px;bottom:18px;z-index:200;background:#54254e;color:#fff;padding:12px 16px;border-radius:12px;font-weight:900;box-shadow:0 15px 35px rgba(0,0,0,.2)";
- document.body.appendChild(t);setTimeout(()=>t.remove(),1600);
-}
-function totals(){let total=0;for(const [id,qty] of Object.entries(cart)){const p=products.find(x=>x.id===id);if(p)total+=p.price*qty}return total}
-function openCart(){document.getElementById("cartOverlay").classList.add("show");renderCart()}
-function closeCart(){document.getElementById("cartOverlay").classList.remove("show")}
-function overlayClose(e){if(e.target.id==="cartOverlay")closeCart()}
-function renderCart(){
- const body=document.getElementById("cartBody");
- const ids=Object.keys(cart);
- if(!ids.length){body.innerHTML='<div class="empty">Your cart is empty.<br><br><a class="primary" href="#shop" onclick="closeCart()">Browse candy</a></div>';return}
- const rows=ids.map(id=>{const p=products.find(x=>x.id===id);const q=cart[id];return `<div class="cart-row">
-   <div><strong>${p.emoji} ${p.name}</strong><div style="color:#765d70;font-size:12px">${money(p.price)} each</div></div>
-   <div class="qty"><button onclick="change('${id}',-1)">−</button><strong>${q}</strong><button onclick="change('${id}',1)">+</button></div>
-   <strong>${money(p.price*q)}</strong><button class="remove" onclick="change('${id}',-q)">Remove</button>
- </div>`}).join("");
- body.innerHTML=`${rows}<div class="total"><span>Estimated total</span><span>${money(totals())}</span></div>
- <button class="primary" style="width:100%" onclick="showCheckout()">Continue to order →</button>
- <p class="note" style="margin-top:12px">This is an estimated total. Final availability, price, pickup/delivery, and payment details are confirmed by a parent/guardian after the request is received.</p>`;
-}
-function showCheckout(){
- const body=document.getElementById("cartBody");
- if(!Object.keys(cart).length)return;
- const total=totals();
- const lines=Object.entries(cart).map(([id,q])=>{
-   const p=products.find(x=>x.id===id);
-   return `<div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #f1e5ec">
-     <span>${p.emoji} ${p.name} × ${q}</span><strong>${money(p.price*q)}</strong>
-   </div>`;
- }).join("");
-
- body.innerHTML=`<div id="checkoutForm">
-   <div style="background:linear-gradient(135deg,#fff0f7,#f3eaff);border-radius:17px;padding:18px;margin-bottom:17px">
-     <div style="font-size:12px;font-weight:950;color:#d92f79;text-transform:uppercase;letter-spacing:.5px">Smart checkout</div>
-     <h3 style="margin:5px 0 5px">Let's check your order 🍬</h3>
-     <p style="margin:0;color:#765d70;font-size:13px;line-height:1.5">I'll summarize your treats first. Payment will happen on a secure payment-provider page — your card details never go into this website.</p>
-   </div>
-
-   <div style="background:#fff;border:1px solid #efdbe7;border-radius:15px;padding:14px;margin-bottom:17px">
-     <strong>Order summary</strong>
-     ${lines}
-     <div style="display:flex;justify-content:space-between;padding-top:13px;font-size:19px;font-weight:1000">
-       <span>Estimated total</span><span>${money(total)}</span>
-     </div>
-   </div>
-
-   <div class="form-grid">
-    <div class="field"><label for="name">Your name *</label><input id="name" required placeholder="First and last name"></div>
-    <div class="field"><label for="contact">Parent/guardian contact *</label><input id="contact" required placeholder="Email or phone"></div>
-    <div class="field"><label for="method">Pickup or delivery *</label><select id="method"><option>Pickup</option><option>Delivery</option></select></div>
-    <div class="field"><label for="time">Preferred time</label><input id="time" placeholder="Example: Saturday afternoon"></div>
-    <div class="field full"><label for="notes">Order notes</label><textarea id="notes" placeholder="Anything we should know?"></textarea></div>
-   </div>
-
-   <div class="note">🔐 <strong>Secure payment:</strong> When a real payment provider is connected, the card-entry screen will be hosted by that provider. This site will never ask customers to type their card number, security code, or banking password into the candy-shop page.</div>
-
-   <div id="status" class="status"></div>
-
-   <button id="sendBtn" class="primary" style="width:100%;margin-top:13px" onclick="sendOrder()">Continue to secure payment →</button>
-   <button class="secondary" style="width:100%;margin-top:9px" onclick="renderCart()">← Back to cart</button>
-
-   <p style="text-align:center;color:#765d70;font-size:11px;line-height:1.45;margin:13px 0 0">
-     Payment is not finalized until the secure payment provider confirms it. A parent/guardian manages fulfillment and payment.
-   </p>
- </div>`;
-}
-async function sendOrder(){
- const name=document.getElementById("name").value.trim();
- const contact=document.getElementById("contact").value.trim();
- const method=document.getElementById("method").value;
- const time=document.getElementById("time").value.trim();
- const notes=document.getElementById("notes").value.trim();
- const status=document.getElementById("status"),btn=document.getElementById("sendBtn");
- if(!name||!contact){status.className="status bad";status.textContent="Please enter your name and a parent/guardian contact.";return}
- const lines=Object.entries(cart).map(([id,q])=>{const p=products.find(x=>x.id===id);return `${q} × ${p.name} — ${money(p.price*q)}`}).join("\n");
- btn.disabled=true;btn.textContent="Sending…";
- const data=new FormData();
- data.append("access_key",WEB3FORMS_ACCESS_KEY);
- data.append("subject","New Jordan's Sweet Shop Order Request");
- data.append("from_name","Jordan's Sweet Shop");
- data.append("name",name);
- data.append("parent_guardian_contact",contact);
- data.append("pickup_or_delivery",method);
- data.append("preferred_time",time||"Not specified");
- data.append("order",lines);
- data.append("estimated_total",money(totals()));
- data.append("notes",notes||"None");
- data.append("botcheck","");
- try{
-   const res=await fetch(WEB3FORMS_ENDPOINT,{method:"POST",body:data});
-   const json=await res.json();
-   if(json.success){
-     cart={};save();
-     document.getElementById("cartBody").innerHTML=`<div class="success show"><div class="success-icon">🎉</div><h2>Order request received!</h2><p style="color:#765d70;line-height:1.6">Thanks, ${escapeHtml(name)}. Your request has been sent. A parent/guardian will review it and confirm the final details.</p><button class="primary" onclick="closeCart()">Done</button></div>`;
-   }else throw new Error(json.message||"Submission failed");
- }catch(e){
-   status.className="status bad";status.textContent="We couldn't send the request right now. Please try again in a moment.";
-   btn.disabled=false;btn.textContent="Send order request 🍬";
- }
-}
-function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-categories();renderProducts();updateCount();
+function add(){cart++;count.textContent=cart}
+document.querySelectorAll(".cat").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
+ b.classList.add("active"); current=b.dataset.cat; render();
+});
+document.getElementById("sort").onchange=render;
+render();
 </script>
 </body>
 </html>
